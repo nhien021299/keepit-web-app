@@ -1,13 +1,63 @@
+import { useState } from "react";
 import ListGroup from "./components/ListGroup";
+import { configModel } from "./models/ConfigModel";
 
 function App() {
-  const items = ["Base Color", "Legend Color", "Case Color"];
+  const colors = [
+    configModel({ name: "Chartreuse", color: "#7fff00" }),
+    configModel({ name: "Blue", color: "#0000ff" }),
+    configModel({ name: "Chocolate", color: "#d2691e" }),
+  ];
 
-  const onSelected = (item: string) => {
-    console.log(item);
-  };
+  const backgrounds = [
+    configModel({ name: "Cornflowerblue", color: "#6495ed" }),
+    configModel({ name: "Cornsilk", color: "#fff8dc" }),
+    configModel({ name: "Crimson", color: "#dc143c" }),
+  ];
 
-  return <ListGroup title="Config" items={items} onSelected={onSelected} />;
+  const [color, setColor] = useState("");
+  const [background, setBackground] = useState("");
+
+  function onSelectColor(color: string) {
+    setColor(color ?? "");
+  }
+
+  function onSelectBg(background: string) {
+    setBackground(background ?? "");
+  }
+
+  return (
+    <>
+      <ListGroup
+        title="Foreground color"
+        items={colors}
+        onSelected={onSelectColor}
+      />
+      <ListGroup
+        title="Foreground color"
+        items={backgrounds}
+        onSelected={onSelectBg}
+      />
+      <div
+        style={{
+          background: `${background}`,
+          margin: 16,
+          padding: 16,
+          borderRadius: 12,
+        }}
+      >
+        <h4
+          style={{
+            color: `${color}`,
+            fontSize: 20,
+            fontWeight: "bold",
+          }}
+        >
+          Result
+        </h4>
+      </div>
+    </>
+  );
 }
 
 export default App;

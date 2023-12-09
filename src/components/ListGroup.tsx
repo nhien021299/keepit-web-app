@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { ConfigModelType } from "../models/ConfigModel";
 
 interface Props {
-  items?: string[];
+  items?: ConfigModelType[];
   title?: string;
   onSelected?: (item: string) => void;
 }
@@ -18,7 +19,9 @@ function ListGroup({ items, title, onSelected }: Props) {
   };
 
   return (
-    <>
+    <div style={{
+      margin: 16
+    }}>
       <h1>{title}</h1>
       {items?.length != null ? (
         <ul className="list-group">
@@ -30,13 +33,13 @@ function ListGroup({ items, title, onSelected }: Props) {
                     ? "list-group-item active"
                     : "list-group-item"
                 }
-                key={e}
+                key={e.name}
                 onClick={() => {
                   handleOnClicked(index);
-                  if (onSelected != null) onSelected!(e);
+                  if (onSelected != null) onSelected!(e.color ?? '');
                 }}
               >
-                {e}
+                {e.name}
               </li>
             );
           })}
@@ -44,7 +47,7 @@ function ListGroup({ items, title, onSelected }: Props) {
       ) : (
         <h6>Empty List</h6>
       )}
-    </>
+    </div>
   );
 }
 
