@@ -7,7 +7,7 @@ interface Props {
   onSelected?: (item: string) => void;
 }
 
-function ListGroup({ items, title, onSelected }: Props) {
+function ListGroup({ items = [], title = "Title", onSelected }: Props) {
   const [selectedIndex, setIndex] = useState(-1);
 
   const handleOnClicked = (index: number) => {

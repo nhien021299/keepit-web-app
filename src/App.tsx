@@ -17,13 +17,20 @@ function App() {
 
   const [color, setColor] = useState("");
   const [background, setBackground] = useState("");
+  const [isVisible, setVisible] = useState(false);
 
   function onSelectColor(color: string) {
     setColor(color ?? "");
+    setVisible(true);
   }
 
   function onSelectBg(background: string) {
     setBackground(background ?? "");
+    setVisible(true);
+  }
+
+  function onClose() {
+    setVisible(false);
   }
 
   return (
@@ -38,24 +45,34 @@ function App() {
         items={backgrounds}
         onSelected={onSelectBg}
       />
-      <div
-        style={{
-          background: `${background}`,
-          margin: 16,
-          padding: 16,
-          borderRadius: 12,
-        }}
-      >
-        <h4
+      {isVisible && (
+        <div
           style={{
-            color: `${color}`,
-            fontSize: 20,
-            fontWeight: "bold",
+            background: `${background}`,
+            margin: 16,
+            padding: 16,
+            borderRadius: 12,
+            display: "flex",
+            justifyContent: "space-between",
           }}
         >
-          Result
-        </h4>
-      </div>
+          <h4
+            style={{
+              color: `${color}`,
+              fontSize: 20,
+              fontWeight: "bold",
+            }}
+          >
+            Result
+          </h4>
+          <button
+            className="btn-close"
+            color="none"
+            aria-label="Close"
+            onClick={onClose}
+          ></button>
+        </div>
+      )}
     </>
   );
 }
