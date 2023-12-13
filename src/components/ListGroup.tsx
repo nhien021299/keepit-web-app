@@ -19,9 +19,12 @@ function ListGroup({ items = [], title = "Title", onSelected }: Props) {
   };
 
   return (
-    <div style={{
-      margin: 16
-    }}>
+    <div
+      style={{
+        margin: 16,
+        width: 400,
+      }}
+    >
       <h1>{title}</h1>
       {items?.length != null ? (
         <ul className="list-group">
@@ -36,7 +39,7 @@ function ListGroup({ items = [], title = "Title", onSelected }: Props) {
                 key={e.name}
                 onClick={() => {
                   handleOnClicked(index);
-                  if (onSelected != null) onSelected!(e.color ?? '');
+                  if (onSelected != null) onSelected!(e.color ?? "");
                 }}
               >
                 {e.name}

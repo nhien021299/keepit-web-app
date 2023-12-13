@@ -1,79 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ListGroup from "./components/ListGroup";
 import { configModel } from "./models/ConfigModel";
+import SideBar from "./components/SideBar";
 
 function App() {
-  const colors = [
-    configModel({ name: "Chartreuse", color: "#7fff00" }),
-    configModel({ name: "Blue", color: "#0000ff" }),
-    configModel({ name: "Chocolate", color: "#d2691e" }),
-  ];
-
   const backgrounds = [
-    configModel({ name: "Cornflowerblue", color: "#6495ed" }),
-    configModel({ name: "Cornsilk", color: "#fff8dc" }),
-    configModel({ name: "Crimson", color: "#dc143c" }),
+    configModel({ name: "Cornflowerblue", color: "bg-[#6495ed]" }),
+    configModel({ name: "Cornsilk", color: "bg-[#fff8dc]" }),
+    configModel({ name: "Crimson", color: "bg-[#dc143c]" }),
   ];
 
-  const [color, setColor] = useState("");
   const [background, setBackground] = useState("");
-  const [isVisible, setVisible] = useState(false);
-
-  function onSelectColor(color: string) {
-    setColor(color ?? "");
-    setVisible(true);
-  }
 
   function onSelectBg(background: string) {
-    setBackground(background ?? "");
-    setVisible(true);
+    setBackground(background ?? "black");
   }
 
-  function onClose() {
-    setVisible(false);
-  }
+  useEffect(() => {
+    setBackground(background ?? "");
+  }, [background]);
 
   return (
-    <>
+    <div className={`${background} flex  h-screen flex-row`}>
+      <SideBar />
+
       <ListGroup
-        title="Foreground color"
-        items={colors}
-        onSelected={onSelectColor}
-      />
-      <ListGroup
-        title="Foreground color"
+        title="Background color"
         items={backgrounds}
         onSelected={onSelectBg}
       />
-      {isVisible && (
-        <div
-          style={{
-            background: `${background}`,
-            margin: 16,
-            padding: 16,
-            borderRadius: 12,
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <h4
-            style={{
-              color: `${color}`,
-              fontSize: 20,
-              fontWeight: "bold",
-            }}
-          >
-            Result
-          </h4>
-          <button
-            className="btn-close"
-            color="none"
-            aria-label="Close"
-            onClick={onClose}
-          ></button>
-        </div>
-      )}
-    </>
+    </div>
   );
 }
 
