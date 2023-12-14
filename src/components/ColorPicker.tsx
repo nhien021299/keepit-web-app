@@ -3,13 +3,15 @@ import { ChangeEvent, ReactNode, useState } from "react";
 interface Props {
   children?: ReactNode;
   defaultColor?: string;
+  onChange?: (value: string)=> void; 
 }
 
-const ColorPicker = ({ children, defaultColor }: Props) => {
+const ColorPicker = ({ children, defaultColor, onChange }: Props) => {
   const [color, setColor] = useState(defaultColor);
 
   function onColorChange(event: ChangeEvent<HTMLInputElement>) {
     setColor(event.target.value);
+    if(onChange) onChange(event.target.value);
   }
 
   return (

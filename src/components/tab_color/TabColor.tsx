@@ -1,7 +1,11 @@
-import ColorPicker from "./ColorPicker";
-import CustomCard from "./CustomCard";
+import { colorState } from "../../global_state/global_state";
+import ColorPicker from "../ColorPicker";
+import CustomCard from "../CustomCard";
+import { useSnapshot } from "valtio";
+import { handleChangeColor } from "./TabColorController";
 
 const TabColor = () => {
+  const colorSnap = useSnapshot(colorState);
   return (
     <div>
       <div>
@@ -22,17 +26,26 @@ const TabColor = () => {
       <div className="mb-2 text-sm font-medium text-white">ColorWay</div>
       <div className="flex flex-col gap-4 text-sm text-white">
         <CustomCard>
-          <ColorPicker defaultColor="#263548">
+          <ColorPicker
+            defaultColor={colorSnap.base}
+            onChange={(value) => handleChangeColor({ base: value })}
+          >
             <div className="mr-2">Base</div>
           </ColorPicker>
         </CustomCard>
         <CustomCard>
-          <ColorPicker defaultColor="#35393a">
+          <ColorPicker
+            defaultColor={colorSnap.mods}
+            onChange={(value) => handleChangeColor({ mods: value })}
+          >
             <div className="mr-2">Mods</div>
           </ColorPicker>
         </CustomCard>
         <CustomCard>
-          <ColorPicker defaultColor="#bca66b">
+          <ColorPicker
+            defaultColor={colorSnap.accent}
+            onChange={(value) => handleChangeColor({ accent: value })}
+          >
             <div className="mr-2">Accent</div>
           </ColorPicker>
         </CustomCard>
