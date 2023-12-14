@@ -1,15 +1,16 @@
 import { useRef, useState, useEffect } from "react";
+import TabColor from "./TabColor";
 
 const tabs = [
+  {
+    id: "color",
+    name: "COLOR",
+    body: <TabColor/>,
+  },
   {
     id: "layout",
     name: "LAYOUT",
     body: "Tab Layout",
-  },
-  {
-    id: "color",
-    name: "COLOR",
-    body: "Tab Color",
   },
   {
     id: "image",
@@ -63,8 +64,8 @@ export const SlidingTabBar = () => {
           );
         })}
       </div>
-      <div className="flex flex-row justify-center text-2xl">
-        {tabs[activeTabIndex].body}
+      <div className="flex flex-col text-2xl">
+        {tabs[activeTabIndex].body} 
       </div>
     </div>
   );

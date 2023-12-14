@@ -15,6 +15,7 @@
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.9",
     "react": "^18.2.0",
+    "react-colorful": "^5.6.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
     "tailwindcss": "^3.3.6"
@@ -30,5 +31,9 @@
     "eslint-plugin-react-refresh": "^0.4.4",
     "typescript": "^5.2.2",
     "vite": "^5.0.0"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/nhien021299/keepit-web-app.git",
+  "author": "nhien951 <nhien021299@gmail.com>",
+  "license": "MIT"
 }
