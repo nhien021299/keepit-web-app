@@ -1,25 +1,7 @@
 import { useRef, useState, useEffect } from "react";
-import TabColor from "./TabColor";
+import { tabs } from "../common/Tab.tsx";
 
-const tabs = [
-  {
-    id: "color",
-    name: "COLOR",
-    body: <TabColor/>,
-  },
-  {
-    id: "layout",
-    name: "LAYOUT",
-    body: "Tab Layout",
-  },
-  {
-    id: "image",
-    name: "IMAGE",
-    body: "Tab Image",
-  },
-];
-
-export const SlidingTabBar = () => {
+export const TabBar = () => {
   const tabsRef = useRef<(HTMLElement | null)[]>([]);
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [tabUnderlineWidth, setTabUnderlineWidth] = useState(0);
@@ -41,12 +23,12 @@ export const SlidingTabBar = () => {
 
   return (
     <div>
-      <div className="relative mx-3 my-2 grid h-10 w-auto grid-cols-3  items-center rounded-xl border border-black/40 bg-neutral-800 backdrop-blur-sm">
+      <div className="relative mb-4 grid h-10 w-auto grid-cols-3  items-center rounded-xl border border-black/40 bg-[#38383f] backdrop-blur-sm">
         <span
           className="absolute bottom-0 top-0 my-auto flex overflow-hidden rounded-xl shadow-2xl transition-all duration-300"
           style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
         >
-          <span className="h-full w-full rounded-xl bg-gray-200/30" />
+          <span className="h-full w-full rounded-xl bg-[#ff4747]/30" />
         </span>
         {tabs.map((tab, index) => {
           const isActive = activeTabIndex === index;
@@ -59,14 +41,12 @@ export const SlidingTabBar = () => {
               } my-auto cursor-pointer select-none rounded-full px-4 text-center font-light text-white`}
               onClick={() => setActiveTabIndex(index)}
             >
-              <div className=" font-serif text-sm">{tab.name}</div>
+              <div className=" font-mono text-sm">{tab.name}</div>
             </button>
           );
         })}
       </div>
-      <div className="flex flex-col text-2xl">
-        {tabs[activeTabIndex].body} 
-      </div>
+      <div className="flex flex-col text-2xl">{tabs[activeTabIndex].body}</div>
     </div>
   );
 };

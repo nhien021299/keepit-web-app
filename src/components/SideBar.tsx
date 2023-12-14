@@ -1,12 +1,12 @@
-import { SlidingTabBar } from "./SlidingTabBar";
+import { TabBar } from "./TabBar";
 
 const SideBar = () => {
   return (
-    <div className=" w-[300px] bg-slate-600">
-      <div className=" py-4 text-center font-serif text-3xl font-bold text-white">
+    <div className="px-4 h-[100vh] w-[300px] bg-[#202024]">
+      <div className="text-center font-mono text-[2em] font-bold text-white">
         KEEBIT
       </div>
-      <SlidingTabBar />
+      <TabBar />
     </div>
   );
 };
