@@ -23,7 +23,7 @@ export const TabBar = () => {
 
   return (
     <div>
-      <div className="relative mb-4 grid h-10 w-auto grid-cols-3  items-center rounded-xl border border-black/40 bg-[#38383f] backdrop-blur-sm">
+      <div className="relative flex flex-row mb-4 h-10 w-auto justify-evenly  items-center rounded-xl border border-black/40 bg-[#38383f] backdrop-blur-sm">
         <span
           className="absolute bottom-0 top-0 my-auto flex overflow-hidden rounded-xl shadow-2xl transition-all duration-300"
           style={{ left: tabUnderlineLeft, width: tabUnderlineWidth }}
@@ -38,7 +38,7 @@ export const TabBar = () => {
               ref={(el) => (tabsRef.current[index] = el)}
               className={`${
                 isActive ? `` : `hover:text-neutral-300`
-              } my-auto cursor-pointer select-none rounded-full px-4 text-center font-light text-white`}
+              } my-auto w-full cursor-pointer select-none rounded-full px-4 text-center font-light text-white`}
               onClick={() => setActiveTabIndex(index)}
             >
               <div className=" font-mono text-sm">{tab.name}</div>

@@ -1,7 +1,6 @@
 import { useSnapshot } from "valtio";
 import SideBar from "./components/SideBar";
 import { colorState } from "./global_state/global_state";
-import CustomCard from "./components/CustomCard";
 
 function App() {
   const colorSnap = useSnapshot(colorState);
